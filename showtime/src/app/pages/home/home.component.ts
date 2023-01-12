@@ -9,6 +9,7 @@ import { MovieApiServiceService } from 'src/app/service/movie-api-service.servic
 export class HomeComponent implements OnInit {
   constructor(private service: MovieApiServiceService) {}
 
+  //Definition of variables
   bannerResult: any = [];
   trendingMovieResult: any = [];
   actionMovieResult: any = [];

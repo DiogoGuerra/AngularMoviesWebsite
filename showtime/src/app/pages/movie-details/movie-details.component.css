@@ -1,6 +1,7 @@
 img {
-  width: 100%;
+  width: 120px;
   height: auto;
+  align-content: center;
 }
 
 h1 {
@@ -46,4 +47,32 @@ a:hover {
 .carousel-caption p {
   color: #ffffff;
   font-size: 19px;
+}
+
+.rowposter {
+  display: flex;
+  overflow-y: hidden;
+  overflow-x: scroll;
+}
+
+.rowimg {
+  max-height: 100px;
+  object-fit: contain;
+  width: 100%;
+  box-sizing: content-box;
+  transition: transform 450ms;
+  margin-right: 7px;
+}
+
+.rowimg:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+.largeposter {
+  max-height: 350px;
+}
+
+.rowposter::-webkit-scrollbar {
+  display: none;
 }

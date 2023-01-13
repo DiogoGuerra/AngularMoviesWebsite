@@ -25,21 +25,24 @@
     </div>
   </div>
 </div>
-
 <div class="mt-4 p-4">
-  <h1 class="text-white">Main Characters</h1>
-  <div class="row">
-    <div class="col-lg-3" *ngFor="let c of getMovieCastResult">
-      <div class="row mt-2 mb-2">
-        <div class="col-lg-2" *ngIf="c.profile_path">
-          <img src="https://image.tmdb.org/t/p/original/{{ c.profile_path }}" />
+  <h5 class="text-white">Main Characters</h5>
+  <div class="rowposter mt-3 p-2">
+    <ng-container *ngFor="let t of getMovieCastResult">
+      <ng-template [ngIf]="t.profile_path">
+        <div class="row col-lg-2">
+          <img
+            src="https://image.tmdb.org/t/p/original/{{ t.profile_path }}"
+            class="rowimg largeposter"
+            alt="..."
+          />
+          <div class="grid text-center">
+            <h3 class="text-white">{{ t.original_name }}</h3>
+            <p class="text-white">{{ t.character }}</p>
+          </div>
         </div>
-        <div class="col-lg-10">
-          <h3 class="text-white">{{ c.original_name }}</h3>
-          <p class="text-white">{{ c.character }}</p>
-        </div>
-      </div>
-    </div>
+      </ng-template>
+    </ng-container>
   </div>
 </div>
 

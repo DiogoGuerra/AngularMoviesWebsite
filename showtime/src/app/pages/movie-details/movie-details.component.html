@@ -19,15 +19,14 @@
           target="_blank"
           >Watch Trailer</a
         >
-
         <a class="btn btn-md"> Add to Favorites</a>
       </div>
     </div>
   </div>
 </div>
 <div class="mt-4 p-4">
-  <h5 class="text-white">Main Characters</h5>
-  <div class="rowposter mt-3 p-2">
+  <h1>Main Characters</h1>
+  <div class="rowposter mt-3 p-1">
     <ng-container *ngFor="let t of getMovieCastResult">
       <ng-template [ngIf]="t.profile_path">
         <div class="row col-lg-2">

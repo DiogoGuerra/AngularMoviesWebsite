@@ -60,12 +60,12 @@ a:hover {
   object-fit: contain;
   width: 100%;
   box-sizing: content-box;
-  transition: transform 450ms;
+  transition: transform 200ms;
   margin-right: 7px;
 }
 
 .rowimg:hover {
-  transform: scale(1.1);
+  transform: scale(1.04);
   cursor: pointer;
 }
 

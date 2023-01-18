@@ -8,7 +8,8 @@ export class MovieApiServiceService {
   constructor(private http: HttpClient) {}
 
   baseurl = 'https://api.themoviedb.org/3';
-  apikey = '08cc33bd5ae3a747598ce2ad84376e66';
+  // apikey = '08cc33bd5ae3a747598ce2ad84376e66';
+  apikey = '60a46879f5e882034401b819ef4b2c99';
 
   //bannerapidata
   bannerApiData(): Observable<any> {
@@ -25,7 +26,7 @@ export class MovieApiServiceService {
   }
   // searchmovive
   getSearchMovie(data: any): Observable<any> {
-    console.log(data, 'movie#');
+    //console.log(data, 'movie#');
 
     return this.http.get(
       `${this.baseurl}/search/movie?api_key=${this.apikey}&query=${data.movieName}`
@@ -98,5 +99,27 @@ export class MovieApiServiceService {
     return this.http.get(
       `${this.baseurl}/discover/movie?api_key=${this.apikey}&with_genres=53`
     );
+  }
+
+  getMovieByID(id: any): Observable<any> {
+    return this.http.get(`${this.baseurl}/movie/${id}?api_key=${this.apikey}`);
+  }
+  private favorites: Array<object> = [];
+
+  addToFavorites(id: any) {
+    this.favorites.push(id);
+    //save the favorites array to localstorage
+    localStorage.setItem('favorites', JSON.stringify(this.favorites));
+    console.log(localStorage, '#localStorage');
+  }
+
+  getFavorites() {
+    //retrieve the favorites array from localstorage
+    const favorites = JSON.parse(localStorage.getItem('favorites') || '{}');
+
+    if (favorites) {
+      this.favorites = favorites;
+    }
+    return this.favorites;
   }
 }

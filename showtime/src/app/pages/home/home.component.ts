@@ -35,7 +35,7 @@ export class HomeComponent implements OnInit {
   // data for banner
   bannerData() {
     this.service.bannerApiData().subscribe((result) => {
-      console.log(result, 'bannerresult#');
+      //console.log(result, 'bannerresult#');
       this.bannerResult = result.results;
     });
   }

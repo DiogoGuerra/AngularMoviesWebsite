@@ -104,22 +104,22 @@ export class MovieApiServiceService {
   getMovieByID(id: any): Observable<any> {
     return this.http.get(`${this.baseurl}/movie/${id}?api_key=${this.apikey}`);
   }
-  private favorites: Array<object> = [];
+  //private favorites: Array<object> = [];
 
-  addToFavorites(id: any) {
-    this.favorites.push(id);
-    //save the favorites array to localstorage
-    localStorage.setItem('favorites', JSON.stringify(this.favorites));
-    console.log(localStorage, '#localStorage');
-  }
+  // addToFavorites(id: any) {
+  //   this.favorites.push(id);
+  //   //save the favorites array to localstorage
+  //   localStorage.setItem('favorites', JSON.stringify(this.favorites));
+  //   console.log(localStorage, '#localStorage');
+  // }
 
-  getFavorites() {
-    //retrieve the favorites array from localstorage
-    const favorites = JSON.parse(localStorage.getItem('favorites') || '{}');
+  // getFavorites() {
+  //   //retrieve the favorites array from localstorage
+  //   const favorites = JSON.parse(localStorage.getItem('favorites') || '{}');
 
-    if (favorites) {
-      this.favorites = favorites;
-    }
-    return this.favorites;
-  }
+  //   if (favorites) {
+  //     this.favorites = favorites;
+  //   }
+  //   return this.favorites;
+  // }
 }

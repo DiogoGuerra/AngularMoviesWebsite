@@ -19,7 +19,13 @@
           target="_blank"
           >Watch Trailer</a
         >
-        <a (click)="OnClickHandle()" class="btn btn-md"> Add to Favorites</a>
+        <a *ngIf="isFavorited" (click)="removeFavorite()" class="btn btn-md">
+          Remove Favorite</a
+        >
+
+        <a *ngIf="!isFavorited" (click)="addFavorite()" class="btn btn-md"
+          >Add Favorite</a
+        >
       </div>
     </div>
   </div>

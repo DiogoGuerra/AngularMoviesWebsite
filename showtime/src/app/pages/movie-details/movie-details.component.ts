@@ -11,19 +11,28 @@ export class MovieDetailsComponent implements OnInit {
   constructor(
     private service: MovieApiServiceService,
     private router: ActivatedRoute
-  ) {}
+  ) {
+    this.isFavorited = false;
+  }
 
   //Defining variables
   getMovieDetailResult: any;
   getMovieVideoResult: any;
   getMovieCastResult: any;
+  isFavorited: boolean;
+  id: any;
 
   ngOnInit(): void {
     let getParamId = this.router.snapshot.paramMap.get('id');
+    this.id = getParamId;
+
     //console.log(getParamId, 'getparamid#');
     this.getMovies(getParamId);
     this.getVideo(getParamId);
     this.getMovieCast(getParamId);
+    //this.ShowAddBtn(getParamId);
+    this.isFavorited = localStorage.getItem(getParamId || '{}') !== null;
+    console.log(this.isFavorited, 'ISFAVORITED');
   }
 
   getMovies(id: any) {
@@ -51,10 +60,14 @@ export class MovieDetailsComponent implements OnInit {
     });
   }
 
-  OnClickHandle() {
-    console.log('Click event');
+  removeFavorite() {
     let id = this.router.snapshot.paramMap.get('id');
-    console.log(id);
-    this.service.addToFavorites(id);
+    localStorage.removeItem(this.id);
+    this.isFavorited = false;
+  }
+  addFavorite() {
+    let id = this.router.snapshot.paramMap.get('id');
+    localStorage.setItem(this.id, 'true');
+    this.isFavorited = true;
   }
 }

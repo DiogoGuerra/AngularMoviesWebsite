@@ -27,10 +27,11 @@
 }
 
 .rowimg {
+  float: left;
   max-height: 100px;
-  object-fit: contain;
-  width: 100%;
-  box-sizing: content-box;
+  /* object-fit: contain; */
+  /* width: 100%; */
+  /* box-sizing: content-box; */
   transition: transform 450ms;
   margin-right: 7px;
 }

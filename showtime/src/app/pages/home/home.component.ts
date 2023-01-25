@@ -19,8 +19,10 @@ export class HomeComponent implements OnInit {
   documentaryMovieResult: any = [];
   sciencefictionMovieResult: any = [];
   thrillerMovieResult: any = [];
+  favoriteMovieResult: any = [];
 
   ngOnInit(): void {
+    //localStorage.clear();
     this.bannerData();
     this.trendingData();
     this.actionMovie();
@@ -30,8 +32,30 @@ export class HomeComponent implements OnInit {
     this.documentaryMovie();
     this.sciencefictionMovie();
     this.thrillerMovie();
+    this.favoritesData();
+    // const favoriteIdsString = localStorage.getItem('favorites');
+    // console.log(favoriteIdsString, '#FAV');
   }
 
+  favoritesData() {
+    // Retrieve the stored favorite movie IDs from local storage
+    const favoriteIdsString = localStorage.getItem('favorites');
+    if (favoriteIdsString) {
+      const favoriteIds = JSON.parse(favoriteIdsString);
+      // console.log(favoriteIds, 'favoriteIdsArray');
+      if (favoriteIds) {
+        favoriteIds.forEach((id: any) => {
+          const movieId = parseInt(id, 10); // convert id to number
+          // console.log(movieId);
+          this.service.getMovieByID(movieId).subscribe((result) => {
+            //console.log(result);
+            this.favoriteMovieResult.push(result);
+          });
+        });
+      }
+    }
+    console.log(this.favoriteMovieResult, 'resultado');
+  }
   // data for banner
   bannerData() {
     this.service.bannerApiData().subscribe((result) => {
@@ -43,7 +67,7 @@ export class HomeComponent implements OnInit {
   trendingData() {
     this.service.trendingMovieApiData().subscribe((result) => {
       //console.log('aqui');
-      console.log(result, 'trendingresult#');
+      //console.log(result, 'trendingresult#');
       this.trendingMovieResult = result.results;
     });
   }

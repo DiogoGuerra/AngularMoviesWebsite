@@ -31,7 +31,11 @@ export class MovieDetailsComponent implements OnInit {
     this.getVideo(getParamId);
     this.getMovieCast(getParamId);
     //this.ShowAddBtn(getParamId);
-    this.isFavorited = localStorage.getItem(getParamId || '{}') !== null;
+    //this.toggleFavorite(getParamId);
+
+    // this.isFavorited = localStorage.getItem(getParamId || '{}') !== null;
+    let favorites = JSON.parse(localStorage.getItem('favorites')!) || [];
+    this.isFavorited = favorites.includes(this.id);
     console.log(this.isFavorited, 'ISFAVORITED');
   }
 
@@ -63,11 +67,47 @@ export class MovieDetailsComponent implements OnInit {
   removeFavorite() {
     let id = this.router.snapshot.paramMap.get('id');
     localStorage.removeItem(this.id);
+    console.log(localStorage);
+    // this.toggleFavorite(id);
     this.isFavorited = false;
   }
   addFavorite() {
     let id = this.router.snapshot.paramMap.get('id');
     localStorage.setItem(this.id, 'true');
+    console.log(localStorage);
+    // this.toggleFavorite(id);
     this.isFavorited = true;
+  }
+
+  addFavoriteMovie() {
+    let id = this.router.snapshot.paramMap.get('id');
+    let favorites = localStorage.getItem('favorites')
+      ? JSON.parse(localStorage.getItem('favorites')!)
+      : [];
+    console.log(favorites, '#favorites');
+    favorites.push(id);
+    localStorage.setItem('favorites', JSON.stringify(favorites));
+    console.log(localStorage, '#localStorage');
+    this.isFavorited = true;
+  }
+
+  removeFavoriteMovie() {
+    let id = this.router.snapshot.paramMap.get('id');
+    let favorites = localStorage.getItem('favorites')
+      ? JSON.parse(localStorage.getItem('favorites')!)
+      : [];
+    console.log(favorites, '#favorites');
+    let index = favorites.indexOf(id);
+    console.log(index, '#index');
+    if (index !== -1) {
+      favorites.splice(index, 1);
+      if (favorites.length === 0) {
+        localStorage.removeItem('favorites');
+      } else {
+        localStorage.setItem('favorites', JSON.stringify(favorites));
+      }
+    }
+    console.log(localStorage, '#localStorage');
+    this.isFavorited = false;
   }
 }

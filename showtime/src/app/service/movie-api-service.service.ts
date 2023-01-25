@@ -102,24 +102,7 @@ export class MovieApiServiceService {
   }
 
   getMovieByID(id: any): Observable<any> {
+    //console.log(id, 'recebi este id');
     return this.http.get(`${this.baseurl}/movie/${id}?api_key=${this.apikey}`);
   }
-  //private favorites: Array<object> = [];
-
-  // addToFavorites(id: any) {
-  //   this.favorites.push(id);
-  //   //save the favorites array to localstorage
-  //   localStorage.setItem('favorites', JSON.stringify(this.favorites));
-  //   console.log(localStorage, '#localStorage');
-  // }
-
-  // getFavorites() {
-  //   //retrieve the favorites array from localstorage
-  //   const favorites = JSON.parse(localStorage.getItem('favorites') || '{}');
-
-  //   if (favorites) {
-  //     this.favorites = favorites;
-  //   }
-  //   return this.favorites;
-  // }
 }
